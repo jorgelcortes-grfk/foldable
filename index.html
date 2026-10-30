@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Evolution of Foldables | Visual Interactive Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-main: #191919;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --accent: #2563eb;
+      --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: 'Lora', Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Full-width Lead Image */
+    .hero-container {
+      width: 100%;
+      height: 70vh;
+      min-height: 440px;
+      position: relative;
+      overflow: hidden;
+      background: #f4f4f4;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-caption {
+      position: absolute;
+      bottom: 1rem;
+      right: 1.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.45);
+      padding: 4px 10px;
+      border-radius: 3px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Longform Layout Containers */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 2rem 1.5rem;
+    }
+
+    .content-wide {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Typography & Headers */
+    .headline {
+      font-family: var(--font-sans);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+      color: #111827;
+      margin-bottom: 1.4rem;
+    }
+
+    .intro {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* Byline */
+    .byline-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 0;
+      margin-bottom: 2.8rem;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .byline-author {
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .byline-date {
+      color: var(--text-muted);
+    }
+
+    /* Article Body */
+    .article-body p {
+      font-size: 1.15rem;
+      margin-bottom: 1.8rem;
+      color: #2b2b2b;
+    }
+
+    .article-body p:first-of-type::first-letter {
+      font-size: 3.8rem;
+      float: left;
+      line-height: 0.8;
+      margin: 0.12em 0.15em 0 0;
+      font-family: var(--font-sans);
+      font-weight: 700;
+    }
+
+    /* Interactive Gallery Section */
+    .gallery-section {
+      margin: 4rem auto 6rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .gallery-header {
+      font-family: var(--font-sans);
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .gallery-header h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .gallery-header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Centered 3-column Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 360px));
+      justify-content: center;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 360px));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .gallery-grid {
+        grid-template-columns: minmax(0, 400px);
+      }
+    }
+
+    /* Interactive Image Card */
+    .interactive-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+      width: 100%;
+    }
+
+    .interactive-card:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      border-color: #cbd5e1;
+    }
+
+    .interactive-media-box {
+      position: relative;
+      cursor: pointer;
+      background: #fafafa;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .interactive-media-box img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    /* Interactive Badge / Pill */
+    .status-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      color: #1f2937;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 5px 11px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .status-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #9ca3af;
+    }
+
+    .interactive-card.is-active .status-indicator {
+      background: #22c55e;
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+    }
+
+    .card-meta {
+      padding: 1.25rem 1.4rem;
+      font-family: var(--font-sans);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: #111827;
+    }
+
+    .card-description {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full Width Top Image -->
+  <header class="hero-container">
+    <img 
+      class="hero-image" 
+      src="Huawei-Mate-XT-Ultimate.jpg" 
+      alt="Foldable Hardware In Perspective"
+    >
+    <div class="hero-caption">Concept and Structural Comparison &bull; Interactive Graphics</div>
+  </header>
+
+  <!-- Narrative / Longform Article Area -->
+  <main>
+    <article class="article-wrap">
+      <h1 class="headline">Unfolding Tomorrow: How Radical Geometry Is Reshaping Handheld Tech</h1>
+      
+      <p class="intro">
+        From rigid monolithic glass slabs to multi-hinged dynamic displays, mobile engineering is undergoing its most consequential ergonomic shift in nearly two decades.
+      </p>
+
+      <div class="byline-wrapper">
+        <span class="byline-author">By Visual Journalism Team</span>
+        <span class="byline-date">Published Oct 2026</span>
+      </div>
+
+      <div class="article-body">
+        <p>
+          The emergence of flexible OLED panels and advanced dual-friction hinges has pushed the modern smartphone far beyond conventional form factors. What began as a cautious experiment in book-style folds and vertical clamshells has matured into tri-fold mechanisms and ultrathin profiles that rival standard flagship devices in thickness while delivering tablet-class screen real estate. The physical footprint, once strictly constrained by pocket dimensions, now flexes between high-density compact utility and expansive multi-tasking interfaces.
+        </p>
+        <p>
+          Yet the true challenge of the foldable era lies not solely in display resilience, but in human ergonomics. As hardware architects balance weight distribution, hinge tolerances, and component density against everyday objects—like the diameter of a standard drink can—the industrial layout becomes an intricate puzzle of mass, leverage, and pocketability. As next-generation dual-screen and tri-fold architectures reach mainstream markets, physical interactions are being reimagined from the hinge up.
+        </p>
+      </div>
+    </article>
+
+    <!-- Interactive Graphic Gallery -->
+    <section class="content-wide gallery-section">
+      <div class="gallery-header">
+        <h2>Interactive Form-Factor Gallery</h2>
+        <p>Tap or click any visual to trigger and toggle dynamic unfolding sequences</p>
+      </div>
+
+      <div class="gallery-grid">
+        
+        <!-- Interactive Card 1: Huawei Mate XT Ultimate -->
+        <article class="interactive-card">
+          <div 
+            class="interactive-media-box" 
+            data-static="Huawei-Mate-XT-Ultimate.jpg" 
+            data-animated="Huawei-Mate-XT-Ultimate.gif"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Toggle Huawei Mate XT animation"
+          >
+            <span class="status-badge">
+              <span class="status-indicator"></span>
+              <span class="badge-label">Click to Play</span>
+            </span>
+            <img 
+              src="Huawei-Mate-XT-Ultimate.jpg" 
+              alt="Huawei Mate XT Ultimate scale illustration"
+            >
+          </div>
+          <div class="card-meta">
+            <h3 class="card-title">Huawei Mate XT Ultimate</h3>
+            <p class="card-description">
+              Comparative dimensional analysis next to a standard beverage can, demonstrating folded width and grip geometry.
+            </p>
+          </div>
+        </article>
+
+        <!-- Interactive Card 2: Dual-Fold Ergonomic Concept -->
+        <article class="interactive-card">
+          <div 
+            class="interactive-media-box" 
+            data-static="iphone-duo.jpg" 
+            data-animated="iphone-duo.gif"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Toggle Dual-fold Concept animation"
+          >
+            <span class="status-badge">
+              <span class="status-indicator"></span>
+              <span class="badge-label">Click to Play</span>
+            </span>
+            <img 
+              src="iphone-duo.jpg" 
+              alt="Dual fold handheld scale illustration"
+            >
+          </div>
+          <div class="card-meta">
+            <h3 class="card-title">Dual-Fold Ergonomic Concept</h3>
+            <p class="card-description">
+              Handheld form study contrasting a compact folded shell against standard palm proportions and reach zones.
+            </p>
+          </div>
+        </article>
+
+        <!-- Interactive Card 3: Huawei Mate XT Ultimate (Duplicate / Future Slot) -->
+        <article class="interactive-card">
+          <div 
+            class="interactive-media-box" 
+            data-static="samsung-z-fold-8.jpg" 
+            data-animated="samsung-z-fold-8.gif"
+            role="button"
+            tabindex="0"
+            aria-pressed="false"
+            aria-label="Toggle Huawei Mate XT Variant animation"
+          >
+            <span class="status-badge">
+              <span class="status-indicator"></span>
+              <span class="badge-label">Click to Play</span>
+            </span>
+            <img 
+              src="samsung-z-fold-8.jpg" 
+              alt="Huawei Mate XT Ultimate expanded view illustration"
+            >
+          </div>
+          <div class="card-meta">
+            <h3 class="card-title">Samsung Galaxy Z Fold 8 Wide</h3>
+            <p class="card-description">
+              Alternate profile perspective highlighting hinge alignment and multi-screen cantilever mechanics.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Visual Tech Explorations. All diagrams and assets referenced for editorial illustration.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mediaBoxes = document.querySelectorAll('.interactive-media-box');
+
+      mediaBoxes.forEach(box => {
+        const img = box.querySelector('img');
+        const badgeLabel = box.querySelector('.badge-label');
+        const parentCard = box.closest('.interactive-card');
+        const staticSrc = box.getAttribute('data-static');
+        const animatedSrc = box.getAttribute('data-animated');
+
+        let isPlaying = false;
+
+        const toggleMedia = () => {
+          isPlaying = !isPlaying;
+
+          if (isPlaying) {
+            img.src = animatedSrc + '?t=' + Date.now();
+            badgeLabel.textContent = 'Active (Click to Stop)';
+            parentCard.classList.add('is-active');
+            box.setAttribute('aria-pressed', 'true');
+          } else {
+            img.src = staticSrc;
+            badgeLabel.textContent = 'Click to Play';
+            parentCard.classList.remove('is-active');
+            box.setAttribute('aria-pressed', 'false');
+          }
+        };
+
+        box.addEventListener('click', toggleMedia);
+
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMedia();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
